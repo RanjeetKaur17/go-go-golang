@@ -1,0 +1,3 @@
+package ignoredPath
+
+//Do Nothing
