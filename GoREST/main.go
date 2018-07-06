@@ -13,12 +13,12 @@ func main(){
 	router := gin.Default()
 	router.Use(LoggingMiddleware)
 
-	studentRouterGroup := router.Group("student/v1")
+	studentGroup := router.Group("student/v1")
 	{
-		studentRouterGroup.GET("/student/:studentID", controller.GetStudent)
-		studentRouterGroup.POST("/student", controller.AddStudent)
-		studentRouterGroup.PUT("/student", controller.UpdateStudent)
-		studentRouterGroup.DELETE("/student/:studentID", controller.DeleteStudent)
+		studentGroup.GET("/student/:studentID", controller.GetStudent)
+		studentGroup.POST("/student", controller.AddStudent)
+		studentGroup.PUT("/student", controller.UpdateStudent)
+		studentGroup.DELETE("/student/:studentID", controller.DeleteStudent)
 	}
 
 	router.Run(":8080")
