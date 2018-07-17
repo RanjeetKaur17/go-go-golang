@@ -1,0 +1,11 @@
+{
+  "Database" : {
+    "Host" : "localhost",
+    "Port" : "5432",
+    "Username" : "hellofresh",
+    "Password" : "hellofresh",
+    "Dbname" : "hellofresh"
+  },
+  "Redis" : "localhost:6379",
+  "ServerPort" : "8080"
+}

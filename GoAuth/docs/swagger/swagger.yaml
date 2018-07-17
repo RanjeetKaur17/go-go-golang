@@ -1,0 +1,121 @@
+definitions:
+  model.Credentials:
+    properties:
+      password:
+        type: string
+      username:
+        type: string
+    type: object
+  model.Response:
+    properties:
+      data:
+        type: object
+      exception:
+        type: string
+    type: object
+  model.UserSession:
+    properties:
+      deviceId:
+        type: string
+      userSecureKey:
+        type: string
+      username:
+        type: string
+    type: object
+info:
+  contact: {}
+  license: {}
+paths:
+  /auth/login:
+    post:
+      consumes:
+      - application/json
+      description: Log In For a User and Create Session Details
+      parameters:
+      - description: Credentials
+        in: body
+        name: credentials
+        required: true
+        schema:
+          $ref: '#/definitions/model.Credentials'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.UserSession'
+            type: object
+      summary: Log In For a User
+      tags:
+      - Auth
+  /auth/logout:
+    post:
+      consumes:
+      - application/json
+      description: Log Out a User and End his Session
+      parameters:
+      - description: Authorization
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Response'
+            type: object
+      summary: Log In For a User
+      tags:
+      - Auth
+  /auth/signup:
+    post:
+      consumes:
+      - application/json
+      description: Sign Up New Users
+      parameters:
+      - description: Credentials
+        in: body
+        name: credentials
+        required: true
+        schema:
+          $ref: '#/definitions/model.Credentials'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Response'
+            type: object
+      summary: Sign Up New User
+      tags:
+      - Auth
+  /hello:
+    get:
+      consumes:
+      - application/json
+      description: Verify User Session
+      parameters:
+      - description: Authorization
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Response'
+            type: object
+      summary: Verify User Session
+      tags:
+      - Auth
+swagger: "2.0"
