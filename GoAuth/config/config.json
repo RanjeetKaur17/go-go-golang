@@ -2,9 +2,9 @@
   "Database" : {
     "Host" : "localhost",
     "Port" : "5432",
-    "Username" : "hellofresh",
-    "Password" : "hellofresh",
-    "Dbname" : "hellofresh"
+    "Username" : "root",
+    "Password" : "password",
+    "Dbname" : "user_info"
   },
   "Redis" : "localhost:6379",
   "ServerPort" : "8080"
