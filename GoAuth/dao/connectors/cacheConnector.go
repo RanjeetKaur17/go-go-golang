@@ -7,6 +7,7 @@ import (
 
 var client *redis.Client
 
+//Connect to redis using provided credentials
 func InitializeCache(redisURI string) {
 	client = redis.NewClient(&redis.Options{
 		Addr:     redisURI,

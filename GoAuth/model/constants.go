@@ -1,5 +1,6 @@
 package model
 
+//Constants
 const (
 	USER_SESSION_CACHE_KEY = "SSN"
 	UNDERSCORE = "_"

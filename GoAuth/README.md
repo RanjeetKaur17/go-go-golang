@@ -20,6 +20,11 @@ Add Swagger dependency, using
 *go get -u github.com/swaggo/gin-swagger<br/>*
 *go get -u github.com/swaggo/gin-swagger/swaggerFiles<br/>*
 ```
+Add Other Required Dependencies, using
+```
+go get -u golang.org/x/crypto/bcrypt
+go get -u github.com/pkg/errors
+```
 Create required schema.<br/>
 ```
 CREATE TABLE users (

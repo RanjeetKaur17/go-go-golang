@@ -8,18 +8,28 @@ import (
 	"go-go-golang/GoAuth/util"
 )
 
+//Interface for Services Available for Auth
 type AuthServiceInterface interface {
+	//Sign Up New User. Encrypt password and save into datastore.
 	SignUp(credentials model.Credentials) (bool, error)
+
+	//Log In For a User, validate if the password is same as encrypted password and return session details
 	LogIn(credentials model.Credentials) (model.UserSession, error)
+
+	//Log Out a User by terminating his session
 	LogOut(userSession model.UserSession) (bool, error)
+
+	//Verify if provided session details are valid. If valid return username
 	IsAuthorized(userSession model.UserSession) (string, error)
 }
 
+//Implementation for AuthServiceInterface
 type AuthService struct {
 	UserDAO        dao.UserDAOInterface
 	UserSessionDAO dao.UserSessionDAOInterface
 }
 
+//Sign Up New User. Encrypt password and save into datastore.
 func (t *AuthService) SignUp(credentials model.Credentials) (bool, error) {
 
 	if credentials.Username == "" || credentials.Password == "" {
@@ -44,6 +54,8 @@ func (t *AuthService) SignUp(credentials model.Credentials) (bool, error) {
 	return true, err
 }
 
+
+//Log In For a User, validate if the password is same as encrypted password and return session details
 func (t *AuthService) LogIn(credentials model.Credentials) (model.UserSession, error) {
 
 	if credentials.Username == "" || credentials.Password == "" {
@@ -66,6 +78,7 @@ func (t *AuthService) LogIn(credentials model.Credentials) (model.UserSession, e
 	}
 }
 
+//Log Out a User by terminating his session
 func (t *AuthService) LogOut(userSession model.UserSession) (bool, error) {
 
 	if userSession.DeviceId == "" || userSession.UserSecureKey == "" {
@@ -75,6 +88,7 @@ func (t *AuthService) LogOut(userSession model.UserSession) (bool, error) {
 	return t.UserSessionDAO.DeleteUserSession(userSession)
 }
 
+//Verify if provided session details are valid. If valid return username
 func (t *AuthService) IsAuthorized(userSession model.UserSession) (string, error) {
 
 	if userSession.DeviceId == "" || userSession.UserSecureKey == "" {

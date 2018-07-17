@@ -10,6 +10,7 @@ import (
 
 var db *sql.DB
 
+//Connect to database using provided credentials
 func InitializeDataBase(host string, port string, user string, password string, dbname string){
 
 	psqlInfo := fmt.Sprintf("host=%s port=%s user=%s "+

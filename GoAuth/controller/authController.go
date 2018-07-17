@@ -8,14 +8,26 @@ import (
 	"errors"
 )
 
+//Interface for Controller methods available as part of Auth Module
 type AuthControllerInterface interface {
+
+	//Sign Up New User
 	SignUp(c *gin.Context)
+
+	//Log In For a User and return session details
 	LogIn(c *gin.Context)
+
+	//Log Out a User
 	LogOut(c *gin.Context)
+
+	//Verify if provided session details are valid
 	CheckAuthorization(c *gin.Context)
+
+	//Get Hello Message with logged in user name
 	GetMessage(c *gin.Context)
 }
 
+//Implementation for AuthControllerInterface
 type AuthController struct {
 	Service service.AuthServiceInterface
 }

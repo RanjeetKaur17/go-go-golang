@@ -34,6 +34,7 @@ func StartRoutesV1(auth AuthControllerInterface) {
 	router.Run(":" + util.GetConfiguration().ServerPort)
 }
 
+//Initialize database and cache connections based on configuration file.
 func SetUp(root string) {
 	util.LoadConfigurations(root)
 	connectors.InitializeDataBase(util.GetConfiguration().Database["Host"],

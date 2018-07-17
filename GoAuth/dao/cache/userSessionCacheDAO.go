@@ -6,8 +6,10 @@ import (
 	"time"
 )
 
+//Implementation for UserSessionDAOInterface
 type UserSessionCacheDAO struct {}
 
+//Add User Session on Login
 func (t *UserSessionCacheDAO) AddUserSession(userSession model.UserSession) (bool, error) {
 	key := model.USER_SESSION_CACHE_KEY + model.UNDERSCORE + userSession.DeviceId + model.UNDERSCORE + userSession.UserSecureKey
 	var username string
@@ -21,6 +23,7 @@ func (t *UserSessionCacheDAO) AddUserSession(userSession model.UserSession) (boo
 	return false, err
 }
 
+//Delete User Session on Logout
 func (t *UserSessionCacheDAO) DeleteUserSession(userSession model.UserSession) (bool, error) {
 	key := model.USER_SESSION_CACHE_KEY + model.UNDERSCORE + userSession.DeviceId + model.UNDERSCORE + userSession.UserSecureKey
 	var username string
@@ -34,6 +37,7 @@ func (t *UserSessionCacheDAO) DeleteUserSession(userSession model.UserSession) (
 	return false, err
 }
 
+//Check if Provided session details are correct, for Authorizing
 func (t *UserSessionCacheDAO) IsAuthorized(userSession model.UserSession) (string, error) {
 	key := model.USER_SESSION_CACHE_KEY + model.UNDERSCORE + userSession.DeviceId + model.UNDERSCORE + userSession.UserSecureKey
 	var username string
