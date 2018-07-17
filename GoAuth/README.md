@@ -75,7 +75,7 @@ Once the binary is generated, execute the binary to run the program.<br/>
 
 Once the instance is started, you can call following APIs, for Auth related functions.
 
-#####To SignUp a new user.
+##### To SignUp a new user.
 ```
 POST http://localhost:8080/auth/signup
 BODY :
@@ -90,7 +90,7 @@ RESPONSE
 }
 ```
 
-#####To Create a user session.
+##### To Create a user session.
 
 ```
 POST http://localhost:8080/auth/login
@@ -109,7 +109,7 @@ RESPONSE
 }
 ```
 
-#####To Get User Info.
+##### To Get User Info.
 
 ```
 GET http://localhost:8080/hello
@@ -121,7 +121,7 @@ RESPONSE
 }
 ```
 
-#####To End a user session.
+##### To End a user session.
 ```
 POST http://localhost:8080/auth/logout
 HEADER  Authorization : {"userSecureKey" : <user_secure_key>, "deviceId" : <assigned_device_id>}
