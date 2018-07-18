@@ -14,9 +14,7 @@ import (
 // @APIDescription Swagger Example API
 // @BasePath http://127.0.0.1:8080/
 // @Contact ranjeet.17may@gmail.com
-func StartRoutesV1(auth AuthControllerInterface) {
-
-	router := gin.Default()
+func StartRoutesV1(router *gin.Engine, auth AuthControllerInterface) {
 
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	authGroup := router.Group("auth")
@@ -30,8 +28,6 @@ func StartRoutesV1(auth AuthControllerInterface) {
 	{
 		activityGroup.GET("/hello", auth.GetMessage)
 	}
-
-	router.Run(":" + util.GetConfiguration().ServerPort)
 }
 
 //Initialize database and cache connections based on configuration file.

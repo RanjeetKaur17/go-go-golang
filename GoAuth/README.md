@@ -140,13 +140,18 @@ RESPONSE
 Alternately, you can access and test these APIs, through the swagger page `http://localhost:8080/swagger/index.html`
 
 ## Import
-To Import this into you code, download the package from github. Configure your database and redis connections in `config/config.json`. Copy following code in your code, and that should automatically enable login/ logout functionality.
+To Import this into you code, download the package from github. Configure your database and redis connections in `config/config.json`. Copy following code in your code, and that should automatically enable signup/login/logout functionality. You can use your own router object to pass in the method, so that these apis are started along with your own APIs.
 ```
-controller.SetUp(model.CONFIG_PATH)
+router := gin.Default()
+
+controller.SetUp(router, model.CONFIG_PATH)
 	controller.StartRoutesV1(&controller.AuthController{
 		Service:&service.AuthService{
 			UserDAO:&database.UserDAO{},
 			UserSessionDAO:&cache.UserSessionCacheDAO{}}})
+			
+
+router.Run(":" + <PORT>)			
 ```
 
 For the API's that are to be protected, make them use following method while configuring their routes.
